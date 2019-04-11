@@ -5,9 +5,9 @@ def pierwsze(od, do, coIle, dlugosc):
     pierwsze = []
     for i in range(od, do, coIle):
         if tab[i] is True and len(pierwsze) < dlugosc:
-            print(i)
             pierwsze.append(i)
     return pierwsze;
+
 while(1):
     # ostatnia pierwsza przed liczbą będzie podana
     liczba = input('podaj liczbe: ')
@@ -18,8 +18,8 @@ while(1):
         print('nie podano liczby')
 
 # ostatni wyraz tablicy
-granica = ceil(sqrt(liczba))
-lastTab = granica ** 2
+granica = ceil(sqrt(liczba))*2
+lastTab = (granica ** 2)*2
 
 print(f'ostatni wyraz w tablicy: {lastTab}')
 
@@ -33,22 +33,18 @@ for i in range(2, granica):
         tab[j] = False
 
 pierwszeP = pierwsze(liczba, 2, -1, 10)
-print(pierwszeP)
+print(f'pierwszeP {pierwszeP}')
 
 p1 = choice(pierwszeP)
 pierwszeP.remove(p1)
 p2 = choice(pierwszeP)
 print(f'{p1} i {p2}')
-print(f'pierwszeP {pierwszeP}')
 n = p1*p2
+print(f'n {n}')
 
 # wibieranie e
-# <max(p1,p2)+1;n-1>
 fi = (p1-1)*(p2-1)
 print(f'fi {fi}')
-# "len(tab) - 2" bo -1 od długości, i -1 z przedziału
-# "max(p1, p2)+2" bo 2 nigdy nie będzie większe, a wszystkieinne pierwsze
-# są nieparzyste
 
 # TODO zwiekszy dlugosc (teraz 10)
 pierwszeE = pierwsze(max(p1, p2)+2, len(tab) - 2, 2, 10)
