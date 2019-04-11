@@ -1,7 +1,6 @@
 from math import ceil, sqrt
 from random import choice, randrange
 
-'''
 while(1):
     # ostatnia pierwsza przed liczbą będzie podana
     liczba = input('podaj liczbe: ')
@@ -14,10 +13,7 @@ while(1):
 # ostatni wyraz tablicy
 granica = ceil(sqrt(liczba))
 lastTab = granica ** 2
-'''
-lastTab = 100
-granica = 10
-print(lastTab)
+print(f'ostatni wyraz w tablicy: {lastTab}')
 
 # sito eratostenesa init
 tab = [True] * (lastTab + 1)
@@ -32,10 +28,10 @@ for i in range(2, granica):
 pierwsze = []
 for i in range(len(tab) - 1, 2, -1):
     if tab[i] is True and len(pierwsze) < 10:
-        print(i)
+        print(f'pierwsza: {i}')
         pierwsze.append(i)
 
 p1 = choice(pierwsze)
 p2 = choice(pierwsze)
 
-print(f'{r1} i {r2}')
+print(f'wylosowane p1: {p1} i p2: {p2}')
