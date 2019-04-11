@@ -1,7 +1,7 @@
 # rsa
 Skrypt demonstrujący podstawy RSA
 Cechy:
-  - generuje liczby z podanego zakresu
+  - generuje klucz w oparciu o podaną liczbe
   - <<<WORK IN PROGRESS>>>
 
 
