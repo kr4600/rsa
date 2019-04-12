@@ -2,7 +2,7 @@ from math import ceil, sqrt
 from random import choice, randrange
 
 
-def pierwsze(od, do, coIle, dlugosc):
+def pierwsze(od, do, coIle, dlugosc = 10):
     pierwsze = []
     for i in range(od, do, coIle):
         if tab[i] is True and len(pierwsze) < dlugosc:
@@ -25,10 +25,12 @@ while(1):
 granica = ceil(sqrt(liczba))
 lastTab = granica ** 2
 '''
-liczba = 100
-lastTab = int(100 ** 3)
-granica = int(10 ** 3)
-print(f'ostani {lastTab}')
+
+lol = 100
+liczba = lol
+lastTab = int(lol ** 3)
+granica = int(sqrt(lol) ** 3)
+#   print(f'ostani {lastTab}')
 
 # sito eratostenesa init
 tab = [True] * (lastTab + 1)
@@ -36,14 +38,14 @@ tab[0] = False
 tab[1] = False
 
 # samo sito
-pierwszeMain = []
-for i in range(2, granica):
+# for i in range(2, granica):
+for i in list([2]) + list(range(3, granica, 2)):
+    # print(i)
     if tab[i]:
         for j in range(i * 2, len(tab), i):
             tab[j] = False
-print(f'pierwsze main: {pierwszeMain}')
 
-pierwszeP = pierwsze(liczba, 2, -1, 10)
+pierwszeP = pierwsze(liczba, 2, -1)
 print(f'pierwszeP {pierwszeP}')
 
 p1 = choice(pierwszeP)
@@ -61,7 +63,7 @@ print(f'fi {fi}')
 # są nieparzyste
 
 # TODO zwiekszy dlugosc (teraz 10)
-pierwszeE = pierwsze(max(p1, p2) + 2, len(tab) - 2, 2, 10)
+pierwszeE = pierwsze(max(p1, p2) + 2, len(tab) - 2, 2)
 print(f'pierwszeE {pierwszeE}')
 e = choice(pierwszeE)
 print(f'e = {e}')
