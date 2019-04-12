@@ -1,12 +1,12 @@
 # rsa
 Skrypt demonstrujący podstawy RSA
 Cechy:
-  - generuje liczby z zakresu
+  - generuje klucz w oparciu o podaną liczbe
   - <<<WORK IN PROGRESS>>>
 
 
   #TODO
-  - wykorzystuje podane
+  - wykorzystuje podane liczby
   - szyfrowanie/deszyfrowanie
   - import/eksport kluczy
   - obsługa dowolnej tablicy znakow
