@@ -7,7 +7,7 @@ class klucz:
     def __init__(self, l1, l2, *, rodzaj='publiczny'):
         self.p1 = l1
         self.n = l2
-        print(f'kucz {rodzaj}: l{l1}, l2{l2}')
+        print(f'kucz {rodzaj}: {l1}, {l2}')
 
 
 def pierwsze(od, do, coIle, tab, dlugosc=10):
