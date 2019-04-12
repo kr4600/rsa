@@ -12,12 +12,27 @@ def pierwsze(od, do, coIle, dlugosc):
 
 while(1):
     # ostatnia pierwsza przed liczbą będzie podana
-    liczba = input('podaj liczbe: ')
+    liczba = input('podaj liczbę: ')
     try:
         liczba = int(liczba)
+        # ostatni wyraz tablicy
+        granica = ceil(sqrt(liczba))
+        # **3 to zwiększenie wielkości tablicy aby móc swobodnie pracowac
+        # na liczbach (zwiększa to jednak zużycie ramu)
+        lastTab = (granica ** 2) ** 3
+        granica = granica ** 3
+
+        # sito eratostenesa init
+        tab = [True] * (lastTab + 1)
+        tab[0] = False
+        tab[1] = False
         break
     except ValueError:
         print('nie podano liczby')
+    except MemoryError:
+        print('zabrakło pamięci, prawdopodobnie podana liczba jest za duża')
+    except OverflowError:
+        print('liczby za duże żeby wykonać obliczenia')
 
 # ostatni wyraz tablicy
 granica = ceil(sqrt(liczba))
