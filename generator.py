@@ -5,6 +5,7 @@ import wejscie
 
 class klucz:
     def __init__(self, l1, l2, name, *, rodzaj='publiczny'):
+        # name potrzebne było do łatwiejszego eksportu
         self.name = name
         self.p1 = l1
         self.n = l2
