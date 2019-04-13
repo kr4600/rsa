@@ -1,13 +1,17 @@
-from random import choice
+from secrets import choice
 
 import wejscie
 
 
 class klucz:
-    def __init__(self, l1, l2, *, rodzaj='publiczny'):
+    def __init__(self, l1, l2, name, *, rodzaj='publiczny'):
+        self.name = name
         self.p1 = l1
         self.n = l2
-        print(f'kucz {rodzaj}: l{l1}, l2{l2}')
+        print(f'klucz {rodzaj}: {l1}, {l2}')
+
+    def export(self):
+        return list([self.name, self.p1, self.n])
 
 
 def pierwsze(od, do, coIle, tab, dlugosc=10):
@@ -67,8 +71,8 @@ def generatorKluczy():
     d = choice(pierwszeD)
     print(f'd = {d}')
 
-    k1 = klucz(e, n)
-    k2 = klucz(d, n, rodzaj='prywatny')
+    k1 = klucz(e, n, 'k1')
+    k2 = klucz(d, n, 'k2', rodzaj='prywatny')
 
 
 def main():
