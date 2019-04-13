@@ -30,7 +30,6 @@ def szukanieD(tab, dlugosc=3):
     while len(lista) < dlugosc:
         if tab[x]:
             if (x * e) % fi == 1:
-                print(f'{x} = 1')
                 lista.append(x)
         x += 2
     return lista
@@ -63,13 +62,12 @@ def generatorKluczy():
 
     # TODO zwiekszy dlugosc (teraz 10)
     pierwszeE = pierwsze(max(p1, p2) + 2, len(lTab) - 2, 2, lTab, dlugosc=12)
-    print(f'pierwszeE {pierwszeE}')
     e = choice(pierwszeE)
-    print(f'e = {e}')
+    print(f'e {e}')
 
     pierwszeD = szukanieD(lTab, 5)
     d = choice(pierwszeD)
-    print(f'd = {d}')
+    print(f'd {d}')
 
     k1 = klucz(e, n, 'k1')
     k2 = klucz(d, n, 'k2', rodzaj='prywatny')
