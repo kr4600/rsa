@@ -8,7 +8,7 @@ def export(data='test', *, fileName='klucze'):
     except FileExistsError:
         print('plik istnieje, dane zostaną dopisane do pliku')
         f = open(fileName, 'at')
-        jsonData = '\n' + jsonData
+        jsonData = '\n'*2 + jsonData
     f.write(jsonData)
     f.close()
 
