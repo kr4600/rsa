@@ -3,7 +3,8 @@ from secrets import randbelow
 
 
 def genTablicy(iloscCyfr=3):
-    global encDic
+    # global encDic
+
     # liczna powinna być CO NAJMNIEJ:
     #   3-cyfrowa dla wszystkich [93] (ascii_letters, digits, punctuation)
     #
@@ -26,5 +27,4 @@ def genTablicy(iloscCyfr=3):
 
 
 if __name__ == '__main__':
-    genTablicy()
-    print(encDic)
+    print(genTablicy())
