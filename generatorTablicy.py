@@ -1,4 +1,4 @@
-from string import ascii_letters, digits, punctuation
+from string import ascii_letters, digits, punctuation, whitespace
 from secrets import randbelow
 
 
@@ -6,15 +6,18 @@ def genTablicy(iloscCyfr=3):
     # global encDic
 
     # liczna powinna być CO NAJMNIEJ:
-    #   3-cyfrowa dla wszystkich [93] (ascii_letters, digits, punctuation)
+    #   3-cyfrowa dla wszystkich [99]
+    #   (ascii_letters, digits, punctuation, whitespace)
     #
     # 52 to ascii_letters (wielkie 26 i małe 26)
     # 10 to digits
     # 32 to punctuation
+    # 6 to whitespace
 
     # inna opcja to użycie ord() i chr() do zamiany liter na ascii
     # i wymienienie reszty
-    encSymbols = list(ascii_letters) + list(digits) + list(punctuation)
+    encSymbols = (list(ascii_letters) + list(digits)
+                  + list(punctuation) + list(whitespace))
     encNumbers = []
     while len(encNumbers) < len(encSymbols):
         # 10 ** iloscCyfr, bo 3-cyfrowe są mniejsze od 10**3
