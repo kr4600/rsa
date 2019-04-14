@@ -12,4 +12,5 @@ Cechy:
   - szyfrowanie/deszyfrowanie
   - import kluczy
   - obsługa dowolnej tablicy kodowej
+  - TUI (Text UI) potencjalnie na curses
   - tryb demonstracyjny, przedstawiajacy zasadę działania
