@@ -48,12 +48,18 @@ def generatorKluczy():
             for j in range(i * 2, len(lTab), i):
                 lTab[j] = False
 
-    pierwszeP = pierwsze(lLiczba, 2, -1, lTab)
-    p1 = choice(pierwszeP)
-    pierwszeP.remove(p1)
-    p2 = choice(pierwszeP)
+    # liczba +5 żeby mie pewnoc że bdzie wystarczająco liczb
+    pierwszeP = pierwsze(lLiczba + 5, 1, -1, lTab)
+    while(1):
+        pierwszePBak = pierwszeP
+        p1 = choice(pierwszePBak)
+        pierwszePBak.remove(p1)
+        p2 = choice(pierwszePBak)
+        n = p1 * p2
+        if n >= 10:
+            break
+
     print(f'p1 {p1} \np2 {p2}')
-    n = p1 * p2
     print(f'n {n}')
 
     # wibieranie e

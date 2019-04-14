@@ -8,6 +8,8 @@ def wejscieZKonsoli():
 def sprawdzanie(liczbaInput=100):
     global liczba, granica, tab
     liczba = int(liczbaInput)
+    if liczba == 0:
+        raise ValueError
     # ostatni wyraz tablicy
     granica = ceil(sqrt(liczba))
     # **3 to zwiększenie wielkości tablicy aby móc swobodnie pracowac
@@ -28,7 +30,7 @@ def main():
             sprawdzanie(wejscieZKonsoli())
             break
         except ValueError:
-            print('nie podano liczby')
+            print('podana wartość jest niepoprawna')
         except MemoryError:
             print('zabrakło pamięci prawdopodobnie podana liczba jest za duża')
         except OverflowError:
