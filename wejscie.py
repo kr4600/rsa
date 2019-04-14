@@ -30,7 +30,7 @@ def main():
         except ValueError:
             print('nie podano liczby')
         except MemoryError:
-            print('zabrakło pamięci, prawdopodobnie podana liczba jest za duża')
+            print('zabrakło pamięci prawdopodobnie podana liczba jest za duża')
         except OverflowError:
             print('liczby za duże żeby wykonać obliczenia')
 
