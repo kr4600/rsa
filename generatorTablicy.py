@@ -2,6 +2,11 @@ from string import ascii_letters, digits, punctuation, whitespace
 from secrets import randbelow
 
 
+# spinanie list w słownik
+def slownik(lis1, lis2):
+    return dict(zip(lis1, lis2))
+
+
 def genTablicy(iloscCyfr=3):
     # global encDic
 
@@ -25,9 +30,9 @@ def genTablicy(iloscCyfr=3):
         if rng >= 10 ** (iloscCyfr - 1) and rng not in encNumbers:
             encNumbers.append(rng)
 
-    encDic = dict(zip(encSymbols, encNumbers))
-    return encDic
+    return encSymbols, encNumbers
 
 
 if __name__ == '__main__':
-    print(genTablicy())
+    li1, li2 = genTablicy()
+    print(slownik(li1, li2))
