@@ -32,4 +32,6 @@ def genTablicy(iloscCyfr=3):
 
 if __name__ == '__main__':
     li1, li2 = genTablicy()
+    print(li1)
+    print(li2)
     print(slownik(li1, li2))
