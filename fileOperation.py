@@ -1,4 +1,4 @@
-import json
+from json import dumps
 import zstandard as zstd
 
 
@@ -20,7 +20,7 @@ def decomp(data):
 
 
 def export(data='test', *, fileName='klucze', compression=False):
-    jsonData = json.dumps(data)
+    jsonData = dumps(data)
     if compression is True:
         # kompresja wymaga modyfikacji pliku w spodób bitowy, a nie tekstowy
         # który jest domyślnym trybem, stąd zmienna "typZapisu"
@@ -51,7 +51,7 @@ def main():
 
 def test():
     heh = 'l' * 100
-    heh = json.dumps(heh)
+    heh = dumps(heh)
     compr = comp(heh)
     decompr = decomp(compr)
     print(heh)

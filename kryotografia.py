@@ -1,4 +1,4 @@
-# import generatorTablicy
+from generatorTablicy import slownik
 
 
 def lis2str(data):
@@ -19,23 +19,29 @@ def sekwencjonowanie(ciag, dlugosc):
     return lista
 
 
-def krypt(lista, x, n, szyfr=True):
-    krypto = ''
+def krypt(lista, x, n, szyfrowanie=True):
+    krypto = ''#ostatni segment 00
     for i in range(len(lista)):
         liczba = int(lista[i])
         # print(liczba)
         encrLiczba = str(liczba ** x % n)
-        if szyfr is True:
+        if szyfrowanie is True:
             lenEncrLiczba = int2len(encrLiczba)
             lenN = int2len(n)
             if lenEncrLiczba < lenN:
                 encrLiczba = '0' * (lenN - lenEncrLiczba) + encrLiczba
+        else:
+            if i == len(lista) - 1:
+                print('dodano')
+                encrLiczba = str('0' * int(encrLiczba)) + encrLiczba
         krypto += encrLiczba
     return krypto
 
 
-def kodowanie(tekst, encodeTab, lN):
+def kodowanie(tekst, lisSymbole, lisLiczby, n):
+    print('kodowansko')
     cyfry = ''
+    encodeTab = slownik(lisSymbole, lisLiczby)
     try:
         # konwersja znaków na liczby
         for i in tekst:
@@ -43,7 +49,7 @@ def kodowanie(tekst, encodeTab, lN):
             cyfry += str(encodeTab[i])
         # print(encodeTab)
         print(cyfry)
-        lenghtN = int2len(lN) - 1
+        lenghtN = int2len(n) - 1
         modCyfry = len(cyfry) % lenghtN
         brakuje = lenghtN - modCyfry
 
@@ -54,14 +60,18 @@ def kodowanie(tekst, encodeTab, lN):
         else:
             brakuje += lenghtN - 1
             cyfry += '0' * (brakuje) + str(brakuje)
+        print(cyfry)
 
         cyfry = sekwencjonowanie(cyfry, lenghtN)
+        print(cyfry)
         return cyfry
     except KeyError:
         print('znak przeznaczony do zakodowania nie istnieje w tablicy')
 
 
-def dekodowanie(lista, decodeTab):
+def dekodowanie(lista, lisSymbole, lisLiczby):
+    print('dekodowansko')
+    decodeTab = slownik(lisLiczby, lisSymbole)
     ciag = lis2str(lista)
     print(ciag)
     # redukcja dopełnienia aka magia
@@ -71,7 +81,9 @@ def dekodowanie(lista, decodeTab):
     # ciag[-1] + 1  uwzgldnienie samego wyznacznika
     # int()         konwertuje/umożliwia dzikie działania na liczbach
     # -(int())      okresla koncowy znak
+    print('redukcja')
     ciag = ciag[:-(int(ciag[-1]) + 1)]
+    print(ciag)
 
     iloCyfrowa = list(decodeTab.keys())
     iloCyfrowa = int2len(iloCyfrowa[0])
@@ -106,45 +118,37 @@ def deszyfrowanie(ciag, d, n):
     return tekstJawny
 
 
-def main():
-    defaultDic = {'a': 888, 'b': 990, 'c': 654, 'd': 335, 'e': 864, 'f': 961,
-                  'g': 351, 'h': 919, 'i': 596, 'j': 742, 'k': 747, 'l': 252,
-                  'm': 292, 'n': 629, 'o': 540, 'p': 957, 'q': 588, 'r': 660,
-                  's': 776, 't': 666, 'u': 791, 'v': 953, 'w': 940, 'x': 653,
-                  'y': 775, 'z': 991, 'A': 101, 'B': 946, 'C': 657, 'D': 461,
-                  'E': 635, 'F': 418, 'G': 358, 'H': 503, 'I': 277, 'J': 832,
-                  'K': 258, 'L': 517, 'M': 923, 'N': 446, 'O': 717, 'P': 859,
-                  'Q': 799, 'R': 230, 'S': 139, 'T': 344, 'U': 176, 'V': 415,
-                  'W': 452, 'X': 189, 'Y': 136, 'Z': 481, '0': 676, '1': 552,
-                  '2': 581, '3': 695, '4': 571, '5': 726, '6': 290, '7': 309,
-                  '8': 306, '9': 514, '!': 918, '"': 147, '#': 477, '$': 819,
-                  '%': 908, '&': 516, "'": 830, '(': 399, ')': 987, '*': 377,
-                  '+': 981, ',': 486, '-': 448, '.': 609, '/': 174, ':': 529,
-                  ';': 834, '<': 756, '=': 179, '>': 569, '?': 591, '@': 722,
-                  '[': 668, '\\': 188, ']': 769, '^': 405, '_': 863, '`': 903,
-                  '{': 371, '|': 682, '}': 862, '~': 460, ' ': 279, '\t': 774,
-                  '\n': 251, '\r': 528, '\x0b': 977, '\x0c': 134}
+def compEnc(tekst, lisSymbole, lisLiczby, e, n):
+    lista = kodowanie(tekst, lisSymbole, lisLiczby, n)
+    return szyfrowanie(lista, e, n)
 
-    defDecDic = {888: 'a', 990: 'b', 654: 'c', 335: 'd', 864: 'e', 961: 'f',
-                 351: 'g', 919: 'h', 596: 'i', 742: 'j', 747: 'k', 252: 'l',
-                 292: 'm', 629: 'n', 540: 'o', 957: 'p', 588: 'q', 660: 'r',
-                 776: 's', 666: 't', 791: 'u', 953: 'v', 940: 'w', 653: 'x',
-                 775: 'y', 991: 'z', 101: 'A', 946: 'B', 657: 'C', 461: 'D',
-                 635: 'E', 418: 'F', 358: 'G', 503: 'H', 277: 'I', 832: 'J',
-                 258: 'K', 517: 'L', 923: 'M', 446: 'N', 717: 'O', 859: 'P',
-                 799: 'Q', 230: 'R', 139: 'S', 344: 'T', 176: 'U', 415: 'V',
-                 452: 'W', 189: 'X', 136: 'Y', 481: 'Z', 676: '0', 552: '1',
-                 581: '2', 695: '3', 571: '4', 726: '5', 290: '6', 309: '7',
-                 306: '8', 514: '9', 918: '!', 147: '"', 477: '#', 819: '$',
-                 908: '%', 516: '&', 830: "'", 399: '(', 987: ')', 377: '*',
-                 981: '+', 486: ',', 448: '-', 609: '.', 174: '/', 529: ':',
-                 834: ';', 756: '<', 179: '=', 569: '>', 591: '?', 722: '@',
-                 668: '[', 188: '\\', 769: ']', 405: '^', 863: '_', 903: '`',
-                 371: '{', 682: '|', 862: '}', 460: '~', 279: ' ', 774: '\t',
-                 251: '\n', 528: '\r', 977: '\x0b', 134: '\x0c'}
+
+def compDec(ciag, lisSymbole, lisLiczby, d, n):
+    lista = deszyfrowanie(ciag, d, n)
+    dekodowanie(lista, lisSymbole, lisLiczby)
+
+
+def main():
+    list1 = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm',
+             'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
+             'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+             'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+             '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '!', '"', '#',
+             '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', ':',
+             ';', '<', '=', '>', '?', '@', '[', '\\', ']', '^', '_', '`', '{',
+             '|', '}', '~', ' ', '\t', '\n', '\r', '\x0b', '\x0c']
+
+    list2 = [323, 176, 602, 700, 297, 462, 496, 374, 790, 314, 714, 326, 438,
+             772, 341, 134, 214, 258, 233, 860, 817, 444, 550, 344, 141, 615,
+             861, 521, 894, 171, 856, 776, 246, 917, 903, 877, 120, 409, 562,
+             686, 338, 307, 486, 801, 180, 799, 107, 256, 330, 168, 588, 932,
+             966, 524, 695, 286, 713, 840, 977, 677, 868, 668, 684, 329, 558,
+             479, 453, 512, 696, 723, 350, 468, 800, 385, 902, 209, 279, 780,
+             663, 310, 365, 725, 268, 160, 507, 767, 871, 621, 106, 301, 389,
+             245, 485, 784, 399, 869, 715, 127, 262, 821]
 
     # encDic = genTablicy()
-    zakodowane = kodowanie('lo', defaultDic, 55)
+    zakodowane = kodowanie('lo leh', list1, list2, 4087)
     print(zakodowane)
 
     '''
@@ -155,10 +159,10 @@ def main():
     print(generatorTablicy.slownik(v,k))
     '''
 
-    szyfro = szyfrowanie(zakodowane, 13, 55)
-    zdeszyfro = deszyfrowanie(szyfro, 37, 55)
+    szyfro = szyfrowanie(zakodowane, 73, 4087)
+    zdeszyfro = deszyfrowanie(szyfro, 4177, 4087)
 
-    zdekodo = dekodowanie(zdeszyfro, defDecDic)
+    zdekodo = dekodowanie(zdeszyfro, list1, list2)
     print(zdekodo)
 
 

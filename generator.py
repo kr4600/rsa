@@ -90,6 +90,8 @@ def generatorKluczy():
     k1 = klucz(e, n, 'k1')
     k2 = klucz(d, n, 'k2', rodzaj='prywatny')
 
+    return n, e, d
+
 
 def main():
     wejscie.sprawdzanie()
