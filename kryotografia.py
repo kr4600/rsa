@@ -8,6 +8,10 @@ def lis2str(data):
     return ciag
 
 
+def int2len(data):
+    return len(str(data))
+
+
 def sekwencjonowanie(ciag, dlugosc):
     # dzielenie ciągu na liste po %dlugosc znaków
     lista = list(ciag[i:i + dlugosc]
@@ -15,7 +19,22 @@ def sekwencjonowanie(ciag, dlugosc):
     return lista
 
 
-def kodowanie(tekst, encodeTab, lN=100):
+def krypt(lista, x, n, szyfr=True):
+    krypto = ''
+    for i in range(len(lista)):
+        liczba = int(lista[i])
+        # print(liczba)
+        encrLiczba = str(liczba ** x % n)
+        if szyfr is True:
+            lenEncrLiczba = int2len(encrLiczba)
+            lenN = int2len(n)
+            if lenEncrLiczba < lenN:
+                encrLiczba = '0' * (lenN - lenEncrLiczba) + encrLiczba
+        krypto += encrLiczba
+    return krypto
+
+
+def kodowanie(tekst, encodeTab, lN):
     cyfry = ''
     try:
         # konwersja znaków na liczby
@@ -24,7 +43,7 @@ def kodowanie(tekst, encodeTab, lN=100):
             cyfry += str(encodeTab[i])
         # print(encodeTab)
         print(cyfry)
-        lenghtN = len(str(lN)) - 1
+        lenghtN = int2len(lN) - 1
         modCyfry = len(cyfry) % lenghtN
         brakuje = lenghtN - modCyfry
 
@@ -55,11 +74,11 @@ def dekodowanie(lista, decodeTab):
     ciag = ciag[:-(int(ciag[-1]) + 1)]
 
     iloCyfrowa = list(decodeTab.keys())
-    iloCyfrowa = len(str(iloCyfrowa[1]))
+    iloCyfrowa = int2len(iloCyfrowa[0])
     print(iloCyfrowa)
     lista = sekwencjonowanie(ciag, iloCyfrowa)
     print(lista)
-    tekstJawny = ''
+    zdekodowane = ''
     for i in range(len(lista)):
         # decodeTab[int(lista[i])]
         # decideTab[] - tablica dekodując
@@ -67,16 +86,24 @@ def dekodowanie(lista, decodeTab):
         # lista[i] robi za klucz w słowniku
         klucz = decodeTab[int(lista[i])]
         print(f'{lista[i]} = {klucz}')
-        tekstJawny += klucz
+        zdekodowane += klucz
+    return zdekodowane
+
+
+def szyfrowanie(lista, e, n):
+    print('szyfrowando')
+    szyfrogram = krypt(lista, e, n)
+    print(szyfrogram)
+    return szyfrogram
+
+
+def deszyfrowanie(ciag, d, n):
+    print('deszyfrowando')
+    lista = sekwencjonowanie(ciag, int2len(n))
+    print(lista)
+    tekstJawny = krypt(lista, d, n, False)
+    print(tekstJawny)
     return tekstJawny
-
-
-def szyfrowanie(cia):
-    pass
-
-
-def deszyfrowanie():
-    pass
 
 
 def main():
@@ -115,8 +142,9 @@ def main():
                  668: '[', 188: '\\', 769: ']', 405: '^', 863: '_', 903: '`',
                  371: '{', 682: '|', 862: '}', 460: '~', 279: ' ', 774: '\t',
                  251: '\n', 528: '\r', 977: '\x0b', 134: '\x0c'}
+
     # encDic = genTablicy()
-    zakodowane = kodowanie('lo le', defaultDic)
+    zakodowane = kodowanie('lo', defaultDic, 55)
     print(zakodowane)
 
     '''
@@ -127,7 +155,10 @@ def main():
     print(generatorTablicy.slownik(v,k))
     '''
 
-    zdekodo = dekodowanie(zakodowane, defDecDic)
+    szyfro = szyfrowanie(zakodowane, 13, 55)
+    zdeszyfro = deszyfrowanie(szyfro, 37, 55)
+
+    zdekodo = dekodowanie(zdeszyfro, defDecDic)
     print(zdekodo)
 
 
