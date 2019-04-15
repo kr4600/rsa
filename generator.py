@@ -23,8 +23,6 @@ def pierwsze(od, do, coIle, tab, dlugosc=10):
 
 
 def szukanieD(tab, dlugosc=3):
-    # wyznaczanie d
-    # x = 3 dla przyspieszenia procesu
     x = 3
     lista = []
     while len(lista) < dlugosc:
@@ -36,19 +34,16 @@ def szukanieD(tab, dlugosc=3):
 
 
 def generatorKluczy():
-    # kącik globali
     lLiczba = wejscie.liczba
     lGranica = wejscie.granica
     lTab = wejscie.tab
     global n, e, fi, d, k1, k2
     # samo sito
-    # for i in range(2, granica):
     for i in list([2]) + list(range(3, lGranica, 2)):
         if lTab[i]:
             for j in range(i * 2, len(lTab), i):
                 lTab[j] = False
 
-    # liczba +5 żeby mie pewnoc że bdzie wystarczająco liczb
     pierwszeP = pierwsze(lLiczba + 5, 1, -1, lTab)
     while(1):
         pierwszePBak = pierwszeP
@@ -66,7 +61,6 @@ def generatorKluczy():
     fi = (p1 - 1) * (p2 - 1)
     print(f'fi {fi}')
 
-    # TODO zwiekszy dlugosc (teraz 10)
     pierwszeE = pierwsze(max(p1, p2) + 2, len(lTab) - 2, 2, lTab, dlugosc=12)
     e = choice(pierwszeE)
     print(f'e {e}')

@@ -10,10 +10,7 @@ def sprawdzanie(liczbaInput=100):
     liczba = int(liczbaInput)
     if liczba == 0:
         raise ValueError
-    # ostatni wyraz tablicy
     granica = ceil(sqrt(liczba))
-    # **3 to zwiększenie wielkości tablicy aby móc swobodnie pracowac
-    # na liczbach (zwiększa to jednak zużycie ramu)
     lastTab = (granica ** 2) ** 3
     granica **= 3
 
@@ -24,7 +21,6 @@ def sprawdzanie(liczbaInput=100):
 
 
 def main():
-    # ostatnia pierwsza przed liczbą będzie podana
     while(1):
         try:
             sprawdzanie(wejscieZKonsoli())

@@ -13,17 +13,15 @@ def int2len(data):
 
 
 def sekwencjonowanie(ciag, dlugosc):
-    # dzielenie ciągu na liste po %dlugosc znaków
     lista = list(ciag[i:i + dlugosc]
                  for i in range(0, len(ciag), dlugosc))
     return lista
 
 
 def krypt(lista, x, n, szyfrowanie=True):
-    krypto = ''#ostatni segment 00
+    krypto = ''
     for i in range(len(lista)):
         liczba = int(lista[i])
-        # print(liczba)
         encrLiczba = str(liczba ** x % n)
         if szyfrowanie is True:
             lenEncrLiczba = int2len(encrLiczba)
@@ -43,17 +41,14 @@ def kodowanie(tekst, lisSymbole, lisLiczby, n):
     cyfry = ''
     encodeTab = slownik(lisSymbole, lisLiczby)
     try:
-        # konwersja znaków na liczby
         for i in tekst:
             print(f'{i} = {encodeTab[i]}')
             cyfry += str(encodeTab[i])
-        # print(encodeTab)
         print(cyfry)
         lenghtN = int2len(n) - 1
         modCyfry = len(cyfry) % lenghtN
         brakuje = lenghtN - modCyfry
 
-        # dopełnianie do pełnych sekwencji
         if brakuje >= 2:
             brakuje -= 1
             cyfry += '0' * (brakuje) + str(brakuje)
@@ -74,13 +69,6 @@ def dekodowanie(lista, lisSymbole, lisLiczby):
     decodeTab = slownik(lisLiczby, lisSymbole)
     ciag = lis2str(lista)
     print(ciag)
-    # redukcja dopełnienia aka magia
-    #
-    # ciag[:]       wypisanie czesci znakow
-    # ciag[-1]      ostatnia liczba okreslająca ilosc wypełnienia
-    # ciag[-1] + 1  uwzgldnienie samego wyznacznika
-    # int()         konwertuje/umożliwia dzikie działania na liczbach
-    # -(int())      okresla koncowy znak
     print('redukcja')
     ciag = ciag[:-(int(ciag[-1]) + 1)]
     print(ciag)
@@ -92,10 +80,6 @@ def dekodowanie(lista, lisSymbole, lisLiczby):
     print(lista)
     zdekodowane = ''
     for i in range(len(lista)):
-        # decodeTab[int(lista[i])]
-        # decideTab[] - tablica dekodując
-        # int() - konwersja na inta
-        # lista[i] robi za klucz w słowniku
         klucz = decodeTab[int(lista[i])]
         print(f'{lista[i]} = {klucz}')
         zdekodowane += klucz
@@ -150,14 +134,6 @@ def main():
     # encDic = genTablicy()
     zakodowane = kodowanie('lo leh', list1, list2, 4087)
     print(zakodowane)
-
-    '''
-    odwrocenie dzialania słownika
-    k = list(defaultDic)
-    v = list(defaultDic.values())
-    print(k, v)
-    print(generatorTablicy.slownik(v,k))
-    '''
 
     szyfro = szyfrowanie(zakodowane, 73, 4087)
     zdeszyfro = deszyfrowanie(szyfro, 4177, 4087)
