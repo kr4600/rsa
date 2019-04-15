@@ -2,7 +2,7 @@ import wejscie
 import generator
 import fileOperation
 
-# wejscie.sprawdzanie(wejscie.wejscieZKonsoli())
+# wejscie.main()
 
 
 def main():
