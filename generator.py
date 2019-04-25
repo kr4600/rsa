@@ -48,7 +48,7 @@ def generatorKluczy():
     # for i in range(2, granica):
     for i in list([2]) + list(range(3, lGranica, 2)):
         if lTab[i]:
-            for j in range(i * 2, len(lTab), i):
+            for j in range(i * i, len(lTab), i):
                 lTab[j] = False
 
     # liczba +5 żeby mie pewnoc że bdzie wystarczająco liczb
