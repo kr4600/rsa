@@ -1,5 +1,5 @@
 from timeit import timeit
-from decimal import Decimal, quantize, ROUND_HALF_EVEN
+from decimal import Decimal, ROUND_HALF_EVEN
 
 
 def test(komenda, powtorzenia=10, powtorzeniaTimeIt='pass', startup='pass'):
@@ -9,18 +9,20 @@ def test(komenda, powtorzenia=10, powtorzeniaTimeIt='pass', startup='pass'):
     for i in range(powtorzenia):
         print(f'{i+1} z {powtorzenia}')
         time += timeit(komenda, number=powtorzeniaTimeIt,
-                       setup='from __main__ import ' + komenda[:-2]
-                       + startup)
+                       setup='from __main__ import ' + komenda[:-2] +
+                       startup)
     lap = time / powtorzenia
     print(lap)
     return lap
 
 
 def procenty(dane1, dane2):
-    procent = (1-(dane1/dane2))*100
-    decProcent = Decimal(str(procent)).quantize(Decimal('.01'), rounding=ROUND_HALF_EVEN)
+    procent = (1 - (dane1 / dane2)) * 100
+    decProcent = Decimal(str(procent)).quantize(
+        Decimal('.01'), rounding=ROUND_HALF_EVEN)
     print(procent)
     print(f'poprawa o {decProcent}%')
+
 
 def czas():
     lLastTab = 1000000
@@ -67,17 +69,17 @@ def czas4():
     lTab[0] = False
     lTab[1] = False
     lGranica = 1000
-    for i in list([2]) + list(range(3, lGranica, 2)):
-        if lTab[i]:
-            for j in range(i * 2, len(lTab), i):
-                lTab[j] = False
+    # samo sito
+    for i in range(2, lGranica):
+        for j in range(i * 2, len(lTab), i):
+            lTab[j] = False
     return lTab
 
 
 def sito():
     print(timeit('czas()', setup='from __main__ import czas', number=10))
-    #print(timeit('czas2()', setup='from __main__ import czas2', number=10))
-    #print(timeit('czas3()', setup='from __main__ import czas3', number=10))
+    # print(timeit('czas2()', setup='from __main__ import czas2', number=10))
+    # print(timeit('czas3()', setup='from __main__ import czas3', number=10))
     print(timeit('czas4()', setup='from __main__ import czas4', number=10))
 
 
@@ -122,6 +124,6 @@ if __name__ == '__main__':
     # print(len(czas()))
     # primes_sieve2(100)
     # mnozenie()
-    t1 = test('czas()', 30, 150)
-    t2 = test('czas4()', 30, 150)
+    t1 = test('czas()', 10, 50)
+    t2 = test('czas4()', 10, 50)
     procenty(t1, t2)
