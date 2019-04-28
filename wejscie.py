@@ -1,8 +1,24 @@
+from prompt_toolkit.validation import Validator
+from prompt_toolkit import prompt
 from math import ceil, sqrt
 
 
 def wejscieZKonsoli():
-    return input('podaj liczbę: ')
+
+    def is_number(text):
+        if text.isdigit():
+            if int(text) >= 5:
+                return True
+        else:
+            return False
+
+    validator = Validator.from_callable(
+        is_number,
+        error_message='Na wejsciu znajduja sie nie tylko cyfry lub liczba < 5',
+        move_cursor_to_end=True)
+
+    number = int(prompt('Podaj zakres: ', validator=validator))
+    return number
 
 
 def sprawdzanie(liczbaInput=100):
@@ -29,27 +45,10 @@ def main():
         try:
             sprawdzanie(wejscieZKonsoli())
             break
-        except ValueError:
-            print('podana wartość jest niepoprawna')
         except MemoryError:
             print('zabrakło pamięci prawdopodobnie podana liczba jest za duża')
         except OverflowError:
             print('liczby za duże żeby wykonać obliczenia')
-
-
-def tui(digit):
-    # ostatnia pierwsza przed liczbą będzie podana
-    while(1):
-        try:
-            sprawdzanie(digit)
-            return 'lol'
-            break
-        except ValueError:
-            return 'podana wartość jest niepoprawna'
-        except MemoryError:
-            return 'zabrakło pamięci prawdopodobnie podana liczba jest za duża'
-        except OverflowError:
-            return 'liczby za duże żeby wykonać obliczenia'
 
 
 if __name__ == '__main__':

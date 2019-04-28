@@ -1,5 +1,4 @@
 from secrets import choice
-
 import wejscie
 
 
@@ -90,7 +89,7 @@ def generatorKluczy():
     k1 = klucz(e, n, 'k1')
     k2 = klucz(d, n, 'k2', rodzaj='prywatny')
 
-    return n, e, d
+    return n, e, d, k1, k2
 
 
 def main():
