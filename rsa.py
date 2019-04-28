@@ -100,10 +100,13 @@ def export():
         selection = input('|| ')
         if selection == '1':
             output(list([lK1.export(), lK2.export()]))
+            break
         elif selection == '2':
             output(list([lK1.export()]))
+            break
         elif selection == '3':
             output([list(lK2.export())])
+            break
         elif selection == '7':
             printMenu()
             break
@@ -134,23 +137,24 @@ def main():
             wygenerujTabliceDone = True
 
         elif selection == '3' or selection == 'encr':
-            if wygenerujKlucze and wygenerujTablice:
-                print('do tej czynnosci wymagany jest klucz i tablica')
-            else:
+            if wygenerujKluczeDone and wygenerujTabliceDone:
                 zaszyfrujTekst()
                 zaszyfrujTekstDone = True
+            else:
+                print('do tej czynnosci wymagany jest klucz i tablica')
 
         elif selection == '4' or selection == 'decr':
             if zaszyfrujTekstDone:
-                print('najpierw trzeba cos zaszyfrowac')
-            else:
                 odszyfrujTekst()
+            else:
+                print('najpierw trzeba cos zaszyfrowac')
 
         elif selection == '5' or selection == 'export':
-            if wygenerujKlucze:
-                print('aby eksportowac, stworz klucze')
-            else:
+            if wygenerujKluczeDone:
                 export()
+                printMenu()
+            else:
+                print('aby eksportowac, stworz klucze')
         elif selection == 'enco':
             pass
         elif selection == 'deco':
