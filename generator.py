@@ -10,12 +10,13 @@ class klucz:
         self.n = l2
         print(f'klucz {rodzaj}: {l1}, {l2}')
 
-    #funkcja bezposrednio do exportu
     def export(self):
+        # funkcja bezposrednio do exportu
         return list([self.name, self.p1, self.n])
 
-# zwraca pewna ilosc liczb z podanego przydzialu
+
 def pierwsze(od, do, coIle, tab, dlugosc=10):
+    # zwraca pewna ilosc liczb z podanego przydzialu
     pierwsze = []
     for i in range(od, do, coIle):
         if tab[i] is True and len(pierwsze) < dlugosc:
