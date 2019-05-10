@@ -2,6 +2,7 @@ from generatorTablicy import slownik
 
 
 def lis2str(data):
+    # zamiana listy na stringa
     ciag = ''
     for i in range(len(data)):
         ciag += data[i]
@@ -9,6 +10,7 @@ def lis2str(data):
 
 
 def int2len(data):
+    # dlugosc liczby
     return len(str(data))
 
 
@@ -23,6 +25,7 @@ def krypt(lista, x, n, szyfrowanie=True):
     for i in range(len(lista)):
         liczba = int(lista[i])
         encrLiczba = str(liczba ** x % n)
+        print(f'{liczba} to {encrLiczba}')
         if szyfrowanie is True:
             lenEncrLiczba = int2len(encrLiczba)
             lenN = int2len(n)
@@ -30,8 +33,24 @@ def krypt(lista, x, n, szyfrowanie=True):
                 encrLiczba = '0' * (lenN - lenEncrLiczba) + encrLiczba
         else:
             if i == len(lista) - 1:
+                print('redukcja started')
+                bufferRedukcja = krypto + encrLiczba
+                print(bufferRedukcja)
+                zera = 0
+                # zakres:
+                # zaczynajacy sie od pozycji 1+ niz ostatnia cyfra
+                # do początku lisLiczby
+                # cofajac sie
+                # prawdopodobnie zbedna czesc kodu poniewaz w tablicy brak 0
+                for i in range(int(encrLiczba[-1]) + 1, 0, -1):
+                    print(i)
+                    print(bufferRedukcja[-i])
+                    if int(bufferRedukcja[-i]) == 0:
+                        zera += 1
                 print('dodano')
-                encrLiczba = str('0' * int(encrLiczba)) + encrLiczba
+                print(zera)
+                encrLiczba = str('0' * (int(encrLiczba) - zera)) + encrLiczba
+                print('redukcja ended')
         krypto += encrLiczba
     return krypto
 
@@ -46,6 +65,7 @@ def kodowanie(tekst, lisSymbole, lisLiczby, n):
             cyfry += str(encodeTab[i])
         print(cyfry)
         lenghtN = int2len(n) - 1
+        print(f'lenghtN {lenghtN}')
         modCyfry = len(cyfry) % lenghtN
         brakuje = lenghtN - modCyfry
 
@@ -132,7 +152,7 @@ def main():
              245, 485, 784, 399, 869, 715, 127, 262, 821]
 
     # encDic = genTablicy()
-    zakodowane = kodowanie('lo leh', list1, list2, 4087)
+    zakodowane = kodowanie('lo l', list1, list2, 4087)
     print(zakodowane)
 
     szyfro = szyfrowanie(zakodowane, 73, 4087)

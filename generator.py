@@ -1,5 +1,4 @@
 from secrets import choice
-
 import wejscie
 
 
@@ -10,10 +9,11 @@ class klucz:
         self.n = l2
         print(f'klucz {rodzaj}: {l1}, {l2}')
 
+    #funkcja bezposrednio do exportu
     def export(self):
         return list([self.name, self.p1, self.n])
 
-
+# zwraca pewna ilosc liczb z podanego przydzialu
 def pierwsze(od, do, coIle, tab, dlugosc=10):
     pierwsze = []
     for i in range(od, do, coIle):
@@ -72,7 +72,7 @@ def generatorKluczy():
     k1 = klucz(e, n, 'k1')
     k2 = klucz(d, n, 'k2', rodzaj='prywatny')
 
-    return n, e, d
+    return n, e, d, k1, k2
 
 
 def main():
