@@ -44,6 +44,11 @@ def printMenu(menu='main', space=2):
         print(f'{i}. {toPrint[i]}')
 
 
+def wrongInput():
+    print('Zaznaczono nieznaną opcje')
+    print('-KR-')
+
+
 def wygenerujKlucze():
     global lN, lE, lD, lK1, lK2
     wejscie.main()
@@ -53,6 +58,7 @@ def wygenerujKlucze():
 def wygenerujTablice():
     global lEncSymbols, lEncNumbers
     lEncSymbols, lEncNumbers = genTablicy(iloscCyfr=3)
+    print('wygenerowano tablicę')
 
 
 def zakodujTekst():
@@ -115,7 +121,7 @@ def export():
         elif selection == '9' or selection == 'exit':
             quit()
         else:
-            print('Zaznaczono nieznaną opcje')
+            wrongInput()
 
 # wejscie.main()
 
@@ -164,7 +170,7 @@ def main():
         elif selection == '9' or selection == 'exit':
             quit()
         else:
-            print('Zaznaczono nieznaną opcje')
+            wrongInput()
 
 
 if __name__ == '__main__':
