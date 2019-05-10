@@ -3,14 +3,13 @@ Skrypt demonstrujący podstawy RSA
 Cechy:
   - generuje klucz w oparciu o podaną liczbe
   - eksport kluczy do pliku
+  - szyfrowanie/deszyfrowanie
   - generowanie tablicy kodowej
-  - <<<WORK IN PROGRESS>>>
+  - TUI (Text User Interface)
 
 
   #TODO
   - wykorzystuje podane liczby
-  - szyfrowanie/deszyfrowanie
   - import kluczy
   - obsługa dowolnej tablicy kodowej
-  - TUI (Text UI) potencjalnie na curses
   - tryb demonstracyjny, przedstawiajacy zasadę działania
