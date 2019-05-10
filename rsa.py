@@ -90,6 +90,7 @@ def zaszyfrujTekst():
 def odszyfrujTekst():
     global tekstJawny
     tekstJawny = compDec(szyfrogram, lEncSymbols, lEncNumbers, lD, lN)
+    print(tekstJawny)
 
 
 def zdekodujTekst():

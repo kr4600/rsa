@@ -27,6 +27,7 @@ def genTablicy(iloscCyfr=3):
     while len(encNumbers) < len(encSymbols):
         # 10 ** iloscCyfr, bo 3-cyfrowe są mniejsze od 10**3
         rng = randbelow(10 ** iloscCyfr)
+        # wieksze od 100, nie bedace juz w liscie i nie posiadajace 0
         if(rng >= 10 ** (iloscCyfr - 1) and rng not in encNumbers
            and '0' not in str(rng)):
             encNumbers.append(rng)

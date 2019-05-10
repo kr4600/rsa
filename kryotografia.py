@@ -2,6 +2,7 @@ from generatorTablicy import slownik
 
 
 def lis2str(data):
+    # zamiana listy na stringa
     ciag = ''
     for i in range(len(data)):
         ciag += data[i]
@@ -9,6 +10,7 @@ def lis2str(data):
 
 
 def int2len(data):
+    # dlugosc liczby
     return len(str(data))
 
 
@@ -36,6 +38,11 @@ def krypt(lista, x, n, szyfrowanie=True):
                 bufferRedukcja = krypto + encrLiczba
                 print(bufferRedukcja)
                 zera = 0
+                # zakres:
+                # zaczynajacy sie od pozycji 1+ niz ostatnia cyfra
+                # do początku lisLiczby
+                # cofajac sie
+                # prawdopodobnie zbedna czesc kodu poniewaz w tablicy brak 0
                 for i in range(int(encrLiczba[-1]) + 1, 0, -1):
                     print(i)
                     print(bufferRedukcja[-i])
@@ -160,7 +167,7 @@ def main():
              245, 485, 784, 399, 869, 715, 127, 262, 821]
 
     # encDic = genTablicy()
-    zakodowane = kodowanie('lo le', list1, list2, 4087)
+    zakodowane = kodowanie('lo l', list1, list2, 4087)
     print(zakodowane)
 
     '''

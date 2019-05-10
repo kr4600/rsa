@@ -10,10 +10,11 @@ class klucz:
         self.n = l2
         print(f'klucz {rodzaj}: {l1}, {l2}')
 
+    #funkcja bezposrednio do exportu
     def export(self):
         return list([self.name, self.p1, self.n])
 
-
+# zwraca pewna ilosc liczb z podanego przydzialu
 def pierwsze(od, do, coIle, tab, dlugosc=10):
     pierwsze = []
     for i in range(od, do, coIle):
@@ -50,7 +51,7 @@ def generatorKluczy():
             for j in range(i * 2, len(lTab), i):
                 lTab[j] = False
 
-    # liczba +5 żeby mie pewnoc że bdzie wystarczająco liczb
+    # liczba +5 żeby miec pewnoc że bdzie wystarczająco liczb
     # aby n było wiesksze od 10
     pierwszeP = pierwsze(lLiczba + 5, 1, -1, lTab)
     # print(pierwszeP)
