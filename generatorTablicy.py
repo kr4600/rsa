@@ -28,6 +28,8 @@ def genTablicy(iloscCyfr=3):
         # 10 ** iloscCyfr, bo 3-cyfrowe są mniejsze od 10**3
         rng = randbelow(10 ** iloscCyfr)
         if rng >= 10 ** (iloscCyfr - 1) and rng not in encNumbers:
+        if(rng >= 10 ** (iloscCyfr - 1) and rng not in encNumbers
+           and '0' not in str(rng)):
             encNumbers.append(rng)
 
     return encSymbols, encNumbers
@@ -36,5 +38,7 @@ def genTablicy(iloscCyfr=3):
 if __name__ == '__main__':
     li1, li2 = genTablicy()
     print(li1)
+    print('\n')
     print(li2)
+    print('\n' * 2)
     print(slownik(li1, li2))
